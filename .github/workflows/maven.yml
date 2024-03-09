@@ -41,5 +41,5 @@ jobs:
       uses: docker/build-push-action@v3
       with:       
        repository: ${{secrets.DOCKERHUB_USERNAME}}/notification       
-       tags: first
+       tags: ${{secrets.DOCKERHUB_USERNAME}}/notification:first
        push: true
