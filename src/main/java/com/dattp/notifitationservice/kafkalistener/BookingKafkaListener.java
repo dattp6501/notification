@@ -27,7 +27,7 @@ public class BookingKafkaListener {
     private String MAIL_PASSWORD;
 
     // sent after confirmation by the manager(orderservice send)
-    @KafkaListener(topics = "notiOrder", groupId = "group1", containerFactory = "factoryBooking")
+//    @KafkaListener(topics = "notiOrder", groupId = "group1", containerFactory = "factoryBooking")
     public void listenerPaymentOrder(BookingRequestKafkaDTO req){
         sendMailService.sendOutlook(MAIL_USERNAME, MAIL_PASSWORD, "dattp.b19at040@stu.ptit.edu.vn", "THÔNG BÁO ĐẶT BÀN", createContentMailBooking(req));
     }

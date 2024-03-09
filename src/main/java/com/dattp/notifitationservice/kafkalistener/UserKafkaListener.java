@@ -19,7 +19,7 @@ public class UserKafkaListener {
     @Value("${mail.password}")
     private String MAIL_PASSWORD;
 
-    @KafkaListener(topics = "newUser",groupId = "group1", containerFactory = "factoryUser")
+//    @KafkaListener(topics = "newUser",groupId = "group1", containerFactory = "factoryUser")
     public void listenNewUser(UserRequestKafkaDTO userRequestKafkaDTO){
         System.out.println("======================   NEW USER   ========================");
         System.out.println(userRequestKafkaDTO.getUsername());
