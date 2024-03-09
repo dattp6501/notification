@@ -38,7 +38,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       
     - name: Publish to Docker Hub
-      uses: docker/build-push-action@v1     
+      uses: docker/build-push-action@v3
       with:       
        repository: ${{secrets.DOCKERHUB_USERNAME}}/notification       
        tags: first
