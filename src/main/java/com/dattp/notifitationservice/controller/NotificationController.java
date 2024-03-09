@@ -55,7 +55,7 @@ public class NotificationController {
     @GetMapping
     @RequestMapping("/home")
     public String home(){
-        return "HOME NOTIFICATION";
+        return "HOME NOTIFICATION!";
     }
 
     @GetMapping
