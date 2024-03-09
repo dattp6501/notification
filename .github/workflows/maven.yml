@@ -39,7 +39,9 @@ jobs:
       
     - name: Publish to Docker Hub
       uses: docker/build-push-action@v3
-      with:       
-       repository: ${{secrets.DOCKERHUB_USERNAME}}/notification       
-       tags: ${{secrets.DOCKERHUB_USERNAME}}/notification:first
-       push: true
+      with:
+        content: .
+        file: Dockerfile
+        repository: ${{secrets.DOCKERHUB_USERNAME}}/notification
+        tags: ${{secrets.DOCKERHUB_USERNAME}}/notification:first
+        push: true
