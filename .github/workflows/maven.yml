@@ -71,15 +71,15 @@ jobs:
 
       - name: Publish image to docker hub
         run: docker push ${{secrets.DOCKERHUB_USERNAME}}/notification:first
-  deploy:
-    needs: build
-    runs-on: [ aws-ec2 ]
-    steps:
-      - name: Pull Image from docker hub
-        run: docker pull ${{secrets.DOCKERHUB_USERNAME}}/notification:first
+  # deploy:
+  #   needs: build
+  #   runs-on: [ aws-ec2 ]
+  #   steps:
+  #     - name: Pull Image from docker hub
+  #       run: docker pull ${{secrets.DOCKERHUB_USERNAME}}/notification:first
 
-      - name: Delete old container
-        run: docker rm -f ${{secrets.DOCKERHUB_USERNAME}}/notification:first
+  #     - name: Delete old container
+  #       run: docker rm -f ${{secrets.DOCKERHUB_USERNAME}}/notification:first
 
-      - name: Run docker container
-        run: docker run --name notification -d -p 9002:9002 ${{secrets.DOCKERHUB_USERNAME}}/notification:first
+  #     - name: Run docker container
+  #       run: docker run --name notification -d -p 9002:9002 ${{secrets.DOCKERHUB_USERNAME}}/notification:first
