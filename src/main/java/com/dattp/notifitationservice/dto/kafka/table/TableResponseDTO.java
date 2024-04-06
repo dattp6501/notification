@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
-public class TableResponseDTO{
+public class TableResponseDTO implements Serializable {
   private TableState state;
 
   private Long id;
@@ -22,10 +24,10 @@ public class TableResponseDTO{
   private Float price;
 
   @JsonFormat(pattern = "HH:mm")
-  private LocalDateTime from;
+  private LocalTime from;
 
   @JsonFormat(pattern = "HH:mm")
-  private LocalDateTime to;
+  private LocalTime to;
 
   private String description;
 
