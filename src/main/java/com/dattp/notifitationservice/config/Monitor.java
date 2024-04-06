@@ -23,8 +23,8 @@ public class Monitor {
   @Scheduled(initialDelay = 2000, fixedDelay = 1200000)
   public void isRunning(){
     String message =
-      DateUtils.getcurrentLocalDateTime()
-        .plusHours(6)
+        DateUtils.getcurrentLocalDateTime()
+        .plusHours(7)
         .format(DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd"))
         +": NOTIFICATION ===> RUNNING";
     telegramService.sendNotificationMonitorSystem(message);
