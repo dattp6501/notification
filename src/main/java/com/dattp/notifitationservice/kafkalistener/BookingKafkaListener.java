@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import com.dattp.notifitationservice.dto.kafka.BookedTableRequestKafkaDTO;
-import com.dattp.notifitationservice.dto.kafka.BookingRequestKafkaDTO;
+import com.dattp.notifitationservice.dto.kafka.table.BookedTableRequestKafkaDTO;
+import com.dattp.notifitationservice.dto.kafka.booking.BookingRequestKafkaDTO;
 import com.dattp.notifitationservice.service.SendMailService;
 
 @Component

@@ -1,8 +1,9 @@
-package com.dattp.notifitationservice.dto.kafka;
+package com.dattp.notifitationservice.dto.kafka.booking;
 
 import java.util.Collection;
 import java.util.Date;
 
+import com.dattp.notifitationservice.dto.kafka.table.BookedTableRequestKafkaDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;

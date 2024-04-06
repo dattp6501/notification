@@ -1,4 +1,4 @@
-package com.dattp.notifitationservice.dto.kafka;
+package com.dattp.notifitationservice.dto.kafka.dish;
 
 import lombok.Getter;
 import lombok.Setter;

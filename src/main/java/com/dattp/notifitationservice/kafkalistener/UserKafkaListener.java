@@ -1,29 +1,22 @@
 package com.dattp.notifitationservice.kafkalistener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.kafka.annotation.KafkaListener;
+import com.dattp.notifitationservice.config.kafka.TopicKafkaConfig;
+import com.dattp.notifitationservice.dto.kafka.user.UserResponseDTO;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
-import com.dattp.notifitationservice.dto.kafka.UserRequestKafkaDTO;
-import com.dattp.notifitationservice.service.SendMailService;
-
 @Component
-public class UserKafkaListener {
-    @Autowired
-    private SendMailService sendMailService;
-
-    @Value("${mail.username}")
-    private String MAIL_USERNAME;
-
-    @Value("${mail.password}")
-    private String MAIL_PASSWORD;
-
-//    @KafkaListener(topics = "newUser",groupId = "group1", containerFactory = "factoryUser")
-    public void listenNewUser(UserRequestKafkaDTO userRequestKafkaDTO){
-        System.out.println("======================   NEW USER   ========================");
-        System.out.println(userRequestKafkaDTO.getUsername());
-        System.out.println("===============================================================");
-        sendMailService.sendOutlook(MAIL_USERNAME, MAIL_PASSWORD, userRequestKafkaDTO.getMail(), "Xác thực mail", "Xác thực tài khoản thành công");
+@Log4j2
+public class UserKafkaListener extends ListenerKafka{
+    @KafkaListener(topics = TopicKafkaConfig.NEW_USER_TOPIC, groupId = "com.dattp.restaurant.notification.auth.new_user", containerFactory = "factoryUser")
+    public void listenNewUser(UserResponseDTO dto, Acknowledgment acknowledgment){
+        try {
+            telegramService.sendNotificationService(telegramService.genMessageTemplateUser(dto, "Tài khoản người dùng mới"));
+        }catch (Exception e){
+            log.debug("=====================>  listenNewUser:Exception:{}", e.getMessage());
+        }
+        acknowledgment.acknowledge();
     }
 }
