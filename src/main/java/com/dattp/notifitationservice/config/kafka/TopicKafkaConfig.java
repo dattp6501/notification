@@ -15,4 +15,6 @@ public class TopicKafkaConfig {
 
   public static final String NEW_TABLE_TOPIC = "com.dattp.restaurant.product.new_table";
   public static final String UPDATE_TABLE_TOPIC = "com.dattp.restaurant.product.update_table";
+
+  public static final String PROCESS_BOOKING_TOPIC = "com.dattp.restaurant.order.process_order";
 }

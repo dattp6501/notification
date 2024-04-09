@@ -1,5 +1,6 @@
 package com.dattp.notifitationservice.config.kafka;
 
+import com.dattp.notifitationservice.dto.kafka.booking.BookingResponseDTO;
 import com.dattp.notifitationservice.dto.kafka.dish.DishResponseDTO;
 import com.dattp.notifitationservice.dto.kafka.table.TableResponseDTO;
 import com.dattp.notifitationservice.dto.kafka.user.UserResponseDTO;
@@ -96,16 +97,17 @@ public class ComsumerKafkaConfig {
 
 
 //    // booking
-//    @Bean
-//    public ConsumerFactory<String,BookingRequestKafkaDTO> consumerFactoryBooking(){
-//        JsonDeserializer<BookingRequestKafkaDTO> jsonDeserializernew = new JsonDeserializer<>(BookingRequestKafkaDTO.class, false);
-//        jsonDeserializernew.addTrustedPackages("*");
-//        return new DefaultKafkaConsumerFactory<>(comsumerConfigJSON(),new StringDeserializer(), jsonDeserializernew);
-//    }
-//    @Bean
-//    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String,BookingRequestKafkaDTO>> factoryBooking(ConsumerFactory<String,BookingRequestKafkaDTO> consumerFactoryBooking){
-//        ConcurrentKafkaListenerContainerFactory<String,BookingRequestKafkaDTO> factory = new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(consumerFactoryBooking);
-//        return factory;
-//    }
+    @Bean
+    public ConsumerFactory<String, BookingResponseDTO> consumerFactoryBooking(){
+        JsonDeserializer<BookingResponseDTO> jsonDeserializernew = new JsonDeserializer<>(BookingResponseDTO.class, false);
+        jsonDeserializernew.addTrustedPackages("*");
+        return new DefaultKafkaConsumerFactory<>(comsumerConfigJSON(),new StringDeserializer(), jsonDeserializernew);
+    }
+    @Bean
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String,BookingResponseDTO>> factoryBooking(ConsumerFactory<String,BookingResponseDTO> consumerFactoryBooking){
+        ConcurrentKafkaListenerContainerFactory<String,BookingResponseDTO> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactoryBooking);
+        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+        return factory;
+    }
 }

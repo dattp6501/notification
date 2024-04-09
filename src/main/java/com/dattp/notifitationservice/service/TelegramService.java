@@ -1,5 +1,6 @@
 package com.dattp.notifitationservice.service;
 
+import com.dattp.notifitationservice.dto.kafka.booking.BookingResponseDTO;
 import com.dattp.notifitationservice.dto.kafka.dish.DishResponseDTO;
 import com.dattp.notifitationservice.dto.kafka.table.TableResponseDTO;
 import com.dattp.notifitationservice.dto.kafka.user.UserResponseDTO;
@@ -96,6 +97,22 @@ public class TelegramService extends com.dattp.notifitationservice.service.Servi
     message += String.format("<b>Tên đày đủ    : </b>%s.\n", dto.getFullname());
     message += String.format("<b>Tên đăng nhập : </b>%s.\n", dto.getUsername());
     message += String.format("<b>Ngày tạo      : </b>%s.\n", dto.getCreateAt().format(DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd")));
+    return message;
+  }
+
+  public String genMessageTemplateBooking(BookingResponseDTO dto, String title){
+    String message = "";
+    message += String.format("<b>\uD83E\uDE91    %s</b>\n", title);
+    message += String.format("<b>ID            : </b>%d.\n", dto.getId());
+    message += String.format("<b>User ID       : </b>%d.\n", dto.getCustomerId());
+    message += String.format("<b>Tên đầy đủ    : </b>%s.\n", dto.getCustemerFullname());
+    message += String.format("<b>Tiền cọc      : </b>%f.\n", dto.getDeposits());
+    message += String.format("<b>Bắt đầu       : </b>%s.\n", dto.getFrom().format(DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd")));
+    message += String.format("<b>Kêt thúc      : </b>%s.\n", dto.getTo().format(DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd")));
+    message += String.format("<b>Đặt lúc       : </b>%s.\n", dto.getCreateAt().format(DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd")));
+    message += String.format("<b>Trạng thái    : </b>%s.\n", dto.getState());
+    message += String.format("<b>SL bàn        : </b>%d.\n", dto.getBookedTables().size());
+    message += String.format("<b>Mô tả         : </b>%s.\n", dto.getDescription());
     return message;
   }
 }
