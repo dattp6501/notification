@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class InternalController {
   @GetMapping("/isRunning")
-  public ResponseEntity<Boolean> isRunning(){
+  public ResponseEntity<Boolean> isRunning() {
     return ResponseEntity.ok(true);
   }
 }

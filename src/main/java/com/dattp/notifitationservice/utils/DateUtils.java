@@ -10,15 +10,15 @@ public class DateUtils {
   public static final ZoneId zoneId = ZoneId.of("UTC");
   public static final ZoneId zoneIdHCM = ZoneId.of("Asia/Ho_Chi_Minh");
 
-  public static long getCurrentMils(){
+  public static long getCurrentMils() {
     return LocalDateTime.now(zoneId).toInstant(zoneOffset).toEpochMilli();
   }
 
-  public static LocalDateTime convertToLocalDateTime(long timeMils){
+  public static LocalDateTime convertToLocalDateTime(long timeMils) {
     return Instant.ofEpochMilli(timeMils).atZone(zoneId).toLocalDateTime();
   }
 
-  public static LocalDateTime getcurrentLocalDateTime(){
+  public static LocalDateTime getcurrentLocalDateTime() {
     return LocalDateTime.now(zoneId);
   }
 }

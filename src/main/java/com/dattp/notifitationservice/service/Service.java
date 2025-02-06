@@ -6,5 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 @org.springframework.stereotype.Service
 public class Service {
-  @Autowired @Lazy protected RestTemplate restTemplate;
+  @Autowired
+  @Lazy
+  protected RestTemplate restTemplate;
 }

@@ -7,5 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ListenerKafka {
-  @Autowired @Lazy protected TelegramService telegramService;
+  @Autowired
+  @Lazy
+  protected TelegramService telegramService;
 }

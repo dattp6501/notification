@@ -28,5 +28,7 @@ public class DishResponseDTO implements Serializable {
   @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
   private LocalDateTime updateAt;
 
-  public DishResponseDTO() {super();}
+  public DishResponseDTO() {
+    super();
+  }
 }

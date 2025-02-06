@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Log4j2
-public class UserKafkaListener extends ListenerKafka{
-    @KafkaListener(topics = TopicKafkaConfig.NEW_USER_TOPIC, groupId = "com.dattp.restaurant.notification.auth.new_user", containerFactory = "factoryUser")
-    public void listenNewUser(UserResponseDTO dto, Acknowledgment acknowledgment){
-        try {
-            telegramService.sendNotificationService(telegramService.genMessageTemplateUser(dto, "Tài khoản người dùng mới"));
-        }catch (Exception e){
-            log.debug("=====================>  listenNewUser:Exception:{}", e.getMessage());
-        }
-        acknowledgment.acknowledge();
+public class UserKafkaListener extends ListenerKafka {
+  @KafkaListener(topics = TopicKafkaConfig.NEW_USER_TOPIC, groupId = "com.dattp.restaurant.notification.auth.new_user", containerFactory = "factoryUser")
+  public void listenNewUser(UserResponseDTO dto, Acknowledgment acknowledgment) {
+    try {
+      telegramService.sendNotificationService(telegramService.genMessageTemplateUser(dto, "Tài khoản người dùng mới"));
+    } catch (Exception e) {
+      log.debug("=====================>  listenNewUser:Exception:{}", e.getMessage());
     }
+    acknowledgment.acknowledge();
+  }
 }

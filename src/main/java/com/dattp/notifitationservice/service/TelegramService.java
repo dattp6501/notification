@@ -30,12 +30,12 @@ public class TelegramService extends com.dattp.notifitationservice.service.Servi
   @Value("${telegram.notification_bot_chat_id}")
   private String notificationBotChatId;
 
-  public void sendNotificationMonitorSystem(String message){
+  public void sendNotificationMonitorSystem(String message) {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
 
     JSONObject request = new JSONObject();
-    request.put("text", "\uD83D\uDD14 "+message);
+    request.put("text", "\uD83D\uDD14 " + message);
     request.put("parse_mode", "HTML");
     request.put("disable_web_page_preview", false);
     request.put("chat_id", monitorBotChatId);
@@ -45,7 +45,7 @@ public class TelegramService extends com.dattp.notifitationservice.service.Servi
     restTemplate.postForObject(url, requestEntity, Object.class);
   }
 
-  public void sendNotificationService(String message){
+  public void sendNotificationService(String message) {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -60,7 +60,7 @@ public class TelegramService extends com.dattp.notifitationservice.service.Servi
     restTemplate.postForObject(url, requestEntity, Object.class);
   }
 
-  public String genMessageTemplateDish(DishResponseDTO dto, String title){
+  public String genMessageTemplateDish(DishResponseDTO dto, String title) {
     String message = "";
     message += String.format("<b>\uD83C\uDF7D    %s</b>\n", title);
     message += String.format("<b>ID         : </b>%d.\n", dto.getId());
@@ -73,7 +73,7 @@ public class TelegramService extends com.dattp.notifitationservice.service.Servi
     return message;
   }
 
-  public String genMessageTemplateTable(TableResponseDTO dto, String title){
+  public String genMessageTemplateTable(TableResponseDTO dto, String title) {
     String message = "";
     message += String.format("<b>\uD83E\uDE91    %s</b>\n", title);
     message += String.format("<b>ID         : </b>%d.\n", dto.getId());
@@ -84,12 +84,12 @@ public class TelegramService extends com.dattp.notifitationservice.service.Servi
     message += String.format("<b>Trạng thái : </b>%s.\n", dto.getState().name());
     message += String.format("<b>Cập nhật   : </b>%s.\n", dto.getUpdateAt().format(DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd")));
     message += String.format("<b>Tạo        : </b>%s.\n", dto.getCreateAt().format(DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd")));
-    if(Objects.nonNull(dto.getImage())) message += dto.getImage();
+    if (Objects.nonNull(dto.getImage())) message += dto.getImage();
     else message += "(Không có ảnh)";
     return message;
   }
 
-  public String genMessageTemplateUser(UserResponseDTO dto, String title){
+  public String genMessageTemplateUser(UserResponseDTO dto, String title) {
     String message = "";
     message += String.format("<b>\uD83D\uDE4E    %s</b>\n", title);
     message += String.format("<b>ID            : </b>%d.\n", dto.getId());
@@ -100,7 +100,7 @@ public class TelegramService extends com.dattp.notifitationservice.service.Servi
     return message;
   }
 
-  public String genMessageTemplateBooking(BookingResponseDTO dto, String title){
+  public String genMessageTemplateBooking(BookingResponseDTO dto, String title) {
     String message = "";
     message += String.format("<b>\uD83E\uDE91    %s</b>\n", title);
     message += String.format("<b>ID            : </b>%d.\n", dto.getId());

@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@EnableDiscoveryClient
 @SpringBootApplication
 public class NotifitationserviceApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(NotifitationserviceApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(NotifitationserviceApplication.class, args);
+  }
 
 }

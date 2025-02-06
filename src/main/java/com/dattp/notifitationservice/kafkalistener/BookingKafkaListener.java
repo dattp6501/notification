@@ -1,49 +1,42 @@
 package com.dattp.notifitationservice.kafkalistener;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import com.dattp.notifitationservice.config.kafka.TopicKafkaConfig;
-import com.dattp.notifitationservice.dto.kafka.bookedtable.BookedTableResponseDTO;
 import com.dattp.notifitationservice.dto.kafka.booking.BookingResponseDTO;
+import com.dattp.notifitationservice.service.SendMailService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.dattp.notifitationservice.dto.kafka.table.BookedTableRequestKafkaDTO;
-import com.dattp.notifitationservice.service.SendMailService;
-
 @Component
 @Log4j2
-public class BookingKafkaListener extends ListenerKafka{
-    @Autowired
-    private SendMailService sendMailService;
+public class BookingKafkaListener extends ListenerKafka {
+  @Autowired
+  private SendMailService sendMailService;
 
-    @Value("${payment.url}")
-    private String urlPayment;
+  @Value("${payment.url}")
+  private String urlPayment;
 
-    @Value("${mail.username}")
-    private String MAIL_USERNAME;
+  @Value("${mail.username}")
+  private String MAIL_USERNAME;
 
-    @Value("${mail.password}")
-    private String MAIL_PASSWORD;
+  @Value("${mail.password}")
+  private String MAIL_PASSWORD;
 
-    @KafkaListener(topics = TopicKafkaConfig.PROCESS_BOOKING_TOPIC, groupId = "com.dattp.restaurant.notification.process_order", containerFactory = "factoryBooking")
-    public void listenerProcessBooking(@Payload BookingResponseDTO dto, Acknowledgment acknowledgment){
-        try {
-            telegramService.sendNotificationService(telegramService.genMessageTemplateBooking(dto,"THÔNG TIN ĐẶT BÀN MỚI"));
-            acknowledgment.acknowledge();
-        }catch (Exception e){
-            log.error("=============> listenerProcessBooking:Exception:{}", e.getMessage());
-        }
-//        sendMailService.sendOutlook(MAIL_USERNAME, MAIL_PASSWORD, "dattp.b19at040@stu.ptit.edu.vn", "THÔNG BÁO ĐẶT BÀN", createContentMailBooking(dto));
+  @KafkaListener(topics = TopicKafkaConfig.PROCESS_BOOKING_TOPIC, groupId = "com.dattp.restaurant.notification.process_order", containerFactory = "factoryBooking")
+  public void listenerProcessBooking(@Payload BookingResponseDTO dto, Acknowledgment acknowledgment) {
+    try {
+      telegramService.sendNotificationService(telegramService.genMessageTemplateBooking(dto, "THÔNG TIN ĐẶT BÀN MỚI"));
+      acknowledgment.acknowledge();
+    } catch (Exception e) {
+      log.error("=============> listenerProcessBooking:Exception:{}", e.getMessage());
     }
-    
+//        sendMailService.sendOutlook(MAIL_USERNAME, MAIL_PASSWORD, "dattp.b19at040@stu.ptit.edu.vn", "THÔNG BÁO ĐẶT BÀN", createContentMailBooking(dto));
+  }
+
 //    private String createContentMailBooking(BookingResponseDTO dto){
 //        String style =
 //        "<style>"
